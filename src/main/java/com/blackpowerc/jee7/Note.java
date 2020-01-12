@@ -1,18 +1,19 @@
 package com.blackpowerc.jee7;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Objects;
 
+@NamedQueries(
+        {
+                @NamedQuery(name="note.findAll", query = "SELECT n FROM Note n"),
+                @NamedQuery(name="note.findById", query = "SELECT n FROM Note n WHERE n.id = :id"),
+                @NamedQuery(name="note.deleteAll", query = "DELETE FROM Note n"),
+                @NamedQuery(name="note.deleteById", query = "DELETE FROM Note n WHERE n.id = :id"),
+        }
+)
 @Entity
 @Table(name = "notes")
 public class Note
